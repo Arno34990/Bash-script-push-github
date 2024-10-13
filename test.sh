@@ -15,17 +15,19 @@ git commit -m $sms
 
 echo "Push en cours..."
 
-# Lancement du push dans un sous-processus
 git push &
-
-# Animation de chargement pendant le push
 pid=$!
 while kill -0 $pid 2>/dev/null; do
     for i in {1..3}; do
         echo -n "."
         sleep 1
     done
-    echo -ne "\r   \r"  # Efface la ligne précédente
+    echo -ne "\r   \r"
 done
 
-echo "Push OK"
+wait $pid 
+if [[ $? -eq 0 ]]; then
+    echo "Push OK"
+else
+    echo "Push KO"
+fi
