@@ -10,8 +10,8 @@ while true; do
     fi
 done
 
-read -p "Entrez le chemin du dossier à sauvegarder : " comment
-git comment -m $comment
+read -p "Entrez votre message : " sms
+git commit -m $sms
 
 echo "Push en cours..."
 
